@@ -16,6 +16,7 @@ export default {
 .nav-bar{
     display: flex;
     box-shadow: 0 1px 10px rgba(128, 128, 128, 0.459);
+    background-color: white;
 }
 .left,.right{
     width: 60px;
@@ -25,5 +26,6 @@ export default {
 .center{
     flex: 1;
     text-align: center;
+    line-height: 44px;
 }
 </style>
