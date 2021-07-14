@@ -11,6 +11,7 @@
         <tab-control class="tab-control" :titles="['推荐','热门','猜你喜欢']"/>
         <h1>Home</h1>
         <ol>
+         <li><button @click="$refs.scroll.scroll.refresh()">refresh</button></li>
           <li>1</li>
           <li>2</li>
           <li>3</li>
@@ -52,8 +53,7 @@
         </ol>
       </scroll>
 
-      <back-top @click.native="backClick" />
-
+      <back-top @click.native="backClick" v-show="isShowBackTop"/>
   </div>
 </template>
 
@@ -85,10 +85,18 @@ export default {
           'pop':{page:0,list:[]},
           'new':{page:0,list:[]},
           'sell':{page:0,list:[]},
-        }
+        },
+        isShowBackTop:false
       }
     },
+    updated(){
+      console.log("updated")
+      this.$refs.scroll.scroll.refresh()
+    },
     created(){
+      this.$bus.$on('itemImageLoad',()=>{
+        this.$refs.scroll.scroll.refresh()
+      })
       //把网络请求封装函数到方法里面，注意用this来访问封装的函数
       this.getAllHomeNews()
     },

@@ -1,7 +1,7 @@
 <template>
 <div class="rec-wrap">
     <div class="rec-item" v-for="(item,index) in rec" :key="'HomeRecView'+index">
-        <img :src="item.image">
+        <img :src="item.image" @load="imageLoad">
         <div> {{ item.title }} </div>
     </div>
 </div>
@@ -16,6 +16,11 @@ export default {
             default(){
                 return []
             }
+        }
+    },
+    methods:{
+        imageLoad(){
+            this.$bus.$emit('itemImageLoad')
         }
     }
 }

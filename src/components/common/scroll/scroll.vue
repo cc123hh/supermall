@@ -29,7 +29,8 @@ export default {
     mounted(){
         this.scroll = new BScroll(this.$refs.wrapper,{
             click:true,
-            probeType:this.probeType
+            probeType:this.probeType,
+            mouseWheel:true
         })
         this.scroll.on('scroll',(position) => {
             this.$emit('scroll',position)
